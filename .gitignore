@@ -226,6 +226,7 @@ game/cache
 game/version
 #game/labels/test #Возвращение нужных файлов 1
 game/options_local.rpy
+devlog.txt
 
 # PyCharm
 .idea
