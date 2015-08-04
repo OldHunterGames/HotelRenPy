@@ -4,14 +4,14 @@ label start:
     $ locations = {} # Same for locations
     python:
         blocked = Area("blocked", "#f0f8ff")
-        test1 = Area("test1", "#00ffff")
+        Area("lobby", blue, bg="content/gfx/locations/hotel1/lobby.jpg")
         test2 = Area("test2", "#00ffff")
         test3 = Area("test3", "#00ffff", teleport=[[0, 0, "hsf"]])
         test4 = Area("test4", "#faebd7")
         test5 = Area("test5", "#00ffff", teleport=[[3, 5, "hff"]])
         
     python:
-        pattern = ((3, 3, test1),
+        pattern = ((3, 3, areas["lobby"]),
                         (3, 4, test2),
                         (3, 5, test3),
                         (4, 4, test4))
@@ -21,8 +21,10 @@ label start:
         
     $ loc = hotel1 # Global variable representing current location, this prolly should be a property of mc
     "Starting the game!"
+    
     show screen walk
-    jump test1
+    scene expression loc.pt.bg
+    jump lobby
 
 
 # default place = None

@@ -6,10 +6,11 @@ init python:
         @param: color = Color to paint this in the minimap.
         @param: teleport = matrix of ((x, y, Location.id)) we can teleport to, from this Area.
         """
-        def __init__(self, id, color, label="", teleport=None):
+        def __init__(self, id, color, label="", bg=None, teleport=None):
             self.id = id
             self.label = label if label else id
             self.color = color
+            self.bg = renpy.easy.displayable(bg) if bg else None
             
             self.teleport = teleport
             

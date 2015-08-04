@@ -22,8 +22,14 @@ label walk:
             elif result[1] == "right":
                 $ loc.player_tile[0] += 1
             if renpy.has_label(loc.pt.label):
+                if loc.pt.bg:
+                    scene expression loc.pt.bg # Should be a background in the future.
+                    with dissolve
+                else:
+                    scene expression Solid(loc.pt.color)
                 jump expression loc.pt.label
             else:
+                scene black
                 "No such Label: ([loc.pt.label]) exists (yet :0)"
                 jump walk
                 
