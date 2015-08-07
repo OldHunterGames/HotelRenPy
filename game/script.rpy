@@ -4,27 +4,58 @@ label start:
     $ locations = {} # Same for locations
     python:
         blocked = Area("blocked", "#f0f8ff")
-        Area("lobby", blue, bg="content/gfx/locations/hotel1/lobby.jpg")
-        test2 = Area("test2", "#00ffff")
-        test3 = Area("test3", "#00ffff", teleport=[[0, 0, "hsf"]])
-        test4 = Area("test4", "#faebd7")
-        test5 = Area("test5", "#00ffff", teleport=[[3, 5, "hff"]])
+        Area("lobby", blue, bg="content/gfx/locations/hotel1/lobby.jpg", teleport=[[10, 5, "hsf"]])
+        Area("dinning_room", red, bg="content/gfx/locations/hotel1/dinning_room.jpg")
+        Area("kitchen", red,  bg="content/gfx/locations/hotel1/kitchen.jpg", teleport=[[10, 7, "bm"]])
+        Area("library", green, bg="content/gfx/locations/hotel1/library.jpg")
+        Area("sport_area", green, bg="content/gfx/locations/hotel1/sport_area.jpg")
+        Area("sport_bar", red, bg="content/gfx/locations/hotel1/sport_bar.jpg")
+        Area("art_room", green, bg="content/gfx/locations/hotel1/art_room.jpg")
+        Area("lobby_second", blue, bg="content/gfx/locations/hotel2/lobby_second.jpg", teleport=[[10, 5, "hff"]])
+        Area("corridor", "#00ffff", bg="content/gfx/locations/hotel2/corridor.jpg")
+        Area("room", black, bg="content/gfx/locations/hotel2/room.jpg")
+        Area("basement_entrance", blue, bg="content/gfx/locations/hotel_b/basement.jpg", teleport=[[10, 7, "hff"]])
+        Area("mine", green, bg="content/gfx/locations/hotel_b/mine.jpg")
         
     python:
-        pattern = ((3, 3, areas["lobby"]),
-                        (3, 4, test2),
-                        (3, 5, test3),
-                        (4, 4, test4))
-        hotel1 = Location("hff", "Hotel", "First Floor", (20, 10), (3, 3), pattern)
-        pattern = [[0, 0, test5]]
-        hotel2 = Location("hsf", "Hotel", "Second Floor", (20, 10), (0, 0), pattern)
+        pattern = ((10, 5, areas["lobby"]),
+                        (10, 6, areas["dinning_room"]),
+                        (10, 7, areas["kitchen"]),
+                        (11, 6, areas["library"]),
+                        (9, 7, areas["sport_bar"]),
+                        (8, 7, areas["sport_area"]),
+                        (12, 6, areas["art_room"]))
+        hotel1 = Location("hff", "Hotel", "Первый этаж", (20, 10), (10, 5), pattern)
+        pattern = ((10, 5, areas["lobby_second"]),
+                        (10, 6, areas["corridor"]),
+                        (9, 6, areas["corridor"]),
+                        (8, 6, areas["corridor"]),
+                        (7, 6, areas["corridor"]),
+                        (6, 6, areas["corridor"]),
+                        (5, 6, areas["corridor"]),
+                        (11, 6, areas["corridor"]),
+                        (12, 6, areas["corridor"]),
+                        (13, 6, areas["corridor"]),
+                        (14, 6, areas["corridor"]),
+                        (15, 6, areas["corridor"]),
+                        (9, 7, areas["room"]),
+                        (7, 7, areas["room"]),
+                        (5, 7, areas["room"]),
+                        (11, 7, areas["room"]),
+                        (13, 7, areas["room"]),
+                        (15, 7, areas["room"]))
+        hotel2 = Location("hsf", "Hotel", "Второй этаж", (20, 10), (10, 5), pattern)
+        pattern = ((10, 7, areas["basement_entrance"]),
+                        (10, 8, areas["mine"]))
+        bas = Location("bm", "Hotel", "Подвал", (20, 10), (10, 7), pattern)
         
     $ loc = hotel1 # Global variable representing current location, this prolly should be a property of mc
-    "Starting the game!"
+    "Начинаем игру!"
     
     show screen walk
     scene expression loc.pt.bg
     jump lobby
+
 
 
 # default place = None
