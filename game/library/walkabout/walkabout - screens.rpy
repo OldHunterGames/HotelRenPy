@@ -3,19 +3,19 @@ screen walk():
     # General Info:
     vbox:
         align (0.5, 0.0)
-        text("Player Coords: %d, %d" % (loc.player_tile[0], loc.player_tile[1]))
-        text "Location: [loc.name]"
+        text("Координаты игрока: %d, %d" % (loc.player_tile[0], loc.player_tile[1]))
+        text "Этаж: [loc.name]"
     
     # Action Buttons ---------------------------------------------->
     vbox:
         align(0, 0.5)
-        text "Change Location to:"
+        text "Перейти на:"
         if loc.pt.teleport:
             for t in loc.pt.teleport:
                 $ temp = locations[t[2]]
                 textbutton "[temp.name]":
                     action Return(["change_location", t])
-        textbutton "Back":
+        textbutton "Назад (лучше не жать)":
             action If(loc.last_coords, true=Return(["go_back"]))
                     
     # Directional Buttons  ---------------------------------------------->
@@ -24,16 +24,16 @@ screen walk():
         spacing 10
         hbox:
             xalign 0.5
-            textbutton "Up":
+            textbutton "Вверх":
                 action If(loc.button_state("up"), true=Return(['move', 'up']))
         hbox:
             xalign 0.5
             spacing 5
-            textbutton "Left":
+            textbutton "Налево":
                 action If(loc.button_state("left"), true=Return(['move', 'left']))
-            textbutton "Down":
+            textbutton "Вниз":
                 action If(loc.button_state("down"), true=Return(['move', 'down']))
-            textbutton "Right":
+            textbutton "Направо":
                 action If(loc.button_state("right"), true=Return(['move', 'right']))
  
     # Tile Map ---------------------------------------------->
