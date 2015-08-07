@@ -49,7 +49,7 @@ screen walk():
             for y in xrange(loc.dimensions[1]):
                     for x in xrange(loc.dimensions[0]):
                         frame:
-                            if loc.pt == loc.map[x][y]:
+                            if loc.player_tile == [x, y]:
                                 background "#4b0082"
                             else:
                                 background loc.map[x][y].color
